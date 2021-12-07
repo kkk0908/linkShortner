@@ -12,11 +12,11 @@ urlController.createShortLink = async (data) => {
 
 		let existedUrl = await UrlModel.getUrlByLongUrl(data.longurl)
 
-		if (existedUrl) return { status: 200, shorturl: `http://localhost:3000/urls/${existedUrl.shorturl}` }
+		if (existedUrl) return { status: 200, shorturl: `http://localhost:3001/urls/${existedUrl.shorturl}` }
 		data.shorturl = new ShortUniqueId({ length: 10 })();
 		let saveddata = await UrlModel.saveUrl(data)
 
-		return { status: 200, shorturl: `http://localhost:3000/urls/${saveddata.shorturl}` }
+		return { status: 200, shorturl: `http://localhost:3001/urls/${saveddata.shorturl}` }
 	} catch (error) {
 		console.log(error)
 		return { status: 400, message: error.message }
